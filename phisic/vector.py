@@ -25,7 +25,9 @@ class Vector:
 
     def invert(self):
         self.posX = -self.posX
-        self.posY = -self.posY
+        self.posY = self.posY
+
+
 
     def multiply(self, coef):
         self.posX = coef * self.posX

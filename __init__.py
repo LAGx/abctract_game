@@ -9,13 +9,15 @@ window = graphicCore.window.createWindow()
 canvas = pygame.Surface(config.currScreenSize())
 
 filter = GlobalCord()
-speed = 0.5
+speed = 0.4
 x = 0
 y = 0
+drug = 0.04
 
 main_vec = phisic.vector.Vector()
 up_vec = phisic.vector.Vector()
 right_vec = phisic.vector.Vector()
+drug_vec = phisic.vector.Vector()
 up_vec.changeYEx(speed)
 right_vec.changeXEx(speed)
 
@@ -47,15 +49,22 @@ while not gameExit:
                 main_vec.posX = 0
                 main_vec.posY = 0
 
+    drug_vec.changeXEx(main_vec.posX)
+    drug_vec.changeYEx(main_vec.posY)
+
+    drug_vec.multiply(drug)
+    drug_vec.invert()
+    main_vec.plus(drug_vec)
+
     x += main_vec.posX
     y += main_vec.posY
-    print("X: ", main_vec.posX, "            Y: ", main_vec.posY)
+    print("X: ", drug_vec.posX, "            Y: ", drug_vec.posY)
 
     canvas.fill(config.background)
 ####
     pygame.draw.rect(canvas, config.lights_1, [int(filter.gloX(x-5)), int(filter.gloY(y+5)), 10, 10])
     pygame.draw.circle(canvas,config.lights_2, [int(filter.gloX(0)), int(filter.gloY(0))], 2)
-    main_vec.draw(canvas, filter, x, y, 4)
+    main_vec.draw(canvas, filter, x, y, 10)
 ####
     window.blit(canvas, (0, 0))
     pygame.display.update()

@@ -37,8 +37,6 @@ def currDialogSize(axis):
 background = (5,20, 20)
 lights_1 = (10,170,170)
 lights_2 = (170,10,170)
-
-
-
-
+text_dialog = (100, 255, 200)
+background_dialog = (10, 30,30)
 ####

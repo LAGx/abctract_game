@@ -1,7 +1,7 @@
 import config
 
 class GlobalCord: #filter coord
-    __native_cord = [0, 0]
+    __native_cord = [0.0, 0.0]
 
     def __init__(self):
         self.__native_cord[0] = config.currScreenSize()[0]

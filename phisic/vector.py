@@ -3,9 +3,9 @@ import pygame
 from coordinate import glob
 
 class Vector:
-    posX = 0
-    posY = 0
-    __lenth = 0
+    posX = 0.0
+    posY = 0.0
+    __lenth = 0.0
 
     def getLenth(self):
         self.__lenth = numpy.sqrt((self.posX * self.posX) + (self.posY * self.posY))

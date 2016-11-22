@@ -1,7 +1,7 @@
 import pygame
 from coordinate.glob import *
 
-class figure:
+class Figure:
     x_pos = 0.0
     y_pos = 0.0
     x_size = 0.0
@@ -10,7 +10,7 @@ class figure:
     def __init__(self, x_pos, y_pos, x_size, y_size):
         self.collision = pygame.Rect(GlobalCord().gloX(x_pos), GlobalCord().gloY(y_pos), x_size, y_size)
 
-class rect(figure):
+class Rect(Figure):
     color = (255, 0, 0)
 
     def draw(self, canvas):

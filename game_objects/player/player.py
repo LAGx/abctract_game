@@ -1,13 +1,14 @@
 import phisic.figure.figure as figure
 import pygame
 import phisic.vector
+import config
 
-class player():
+class Player():
     pos_x = 0.0
     pos_y = 0.0
     __speed = 0.3
     __drug = 0.05
-    skin = figure.rect(pos_x,pos_y,10,10)
+    skin = figure.Rect(pos_x,pos_y,10,10)
 
     main_vec = phisic.vector.Vector()
     up_vec = phisic.vector.Vector()
@@ -15,7 +16,7 @@ class player():
     drug_vec = phisic.vector.Vector()
 
     def __init__(self):
-        self.skin.color = (0, 204, 204)
+        self.skin.color = config.Color.player
         self.up_vec.changeYEx(self.__speed)
         self.right_vec.changeXEx(self.__speed)
 

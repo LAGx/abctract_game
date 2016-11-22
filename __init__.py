@@ -17,12 +17,12 @@ dialog = pygame.Surface((config.currDialogSize("x"),config.currDialogSize("y")))
 
 alpha = 0
 
-player = game_objects.player.player.player()
-house = figure.rect(300, 250, 150, 250)
+player = game_objects.player.player.Player()
+house = figure.Rect(300, 250, 150, 250)
 house.color = (15, 40, 40)
-ruby = figure.rect(-60, 80, 3, 3)
+ruby = figure.Rect(-60, 80, 3, 3)
 ruby.color = (255, 0, 127)
-nubs = figure.rect(-5, 5, 20, 20)
+nubs = figure.Rect(-5, 5, 20, 20)
 nubs.color = (80, 5, 5)
 
 pygame.key.set_repeat(1,1)
@@ -30,19 +30,7 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 gameExit = False
 
-look = graphicCore.dialog.dialog.dialog(dialog)
-
-#font = pygame.font.Font(None, 30)
-#your_house = font.render("It`s your house, master.", 1, (100, 255, 200))
-#your_ruby = font.render("Ruby!!!!", 1, (100, 255, 200))
-#your_nubs = font.render("W A S D - movement", 1, (100, 255, 200))
-#textpos1 = your_house.get_rect()
-#textpos2 = your_ruby.get_rect()
-#textpos3 = your_ruby.get_rect()
-#textpos1.centerx = dialog.get_rect().centerx
-#textpos2.centerx = dialog.get_rect().centerx
-#textpos3.centerx = dialog.get_rect().centerx
-
+look = graphicCore.dialog.dialog.Dialog(dialog)
 
 while not gameExit:
 
@@ -54,8 +42,8 @@ while not gameExit:
             gameExit = True
 
 
-    canvas.fill(config.background)
-    dialog.fill(config.background_dialog)
+    canvas.fill(config.Color.background)
+    dialog.fill(config.Color.background_dialog)
 ####
     nubs.draw(canvas)
     house.draw(canvas)

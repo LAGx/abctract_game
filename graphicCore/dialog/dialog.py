@@ -7,7 +7,7 @@ class Dialog:
     def __init__(self, dialog, file_name = "NAN"):
         pygame.font.init()
         self.file_name = file_name
-        self.font = pygame.font.Font(None, 30)
+        self.font = pygame.font.Font(None, 28)
         self.canvas = dialog
         file = open(self.file_name, "r")
         for line in file.readlines():
@@ -21,7 +21,7 @@ class Dialog:
         textLine = self.font.render(text[:-1], 1, config.Color.text_dialog)
         textpos = textLine.get_rect()
         textpos.centerx = self.canvas.get_rect().centerx
-        self.canvas.blit(textLine, (textpos[0], textpos[1] + config.currDialogSize("y") / 5+pos*20))
+        self.canvas.blit(textLine, (textpos[0], textpos[1] + config.currDialogSize("y") / 20+pos*20))
 
     def showFile(self, by, to):
 

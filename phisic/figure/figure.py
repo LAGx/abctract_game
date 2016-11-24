@@ -20,6 +20,3 @@ class Rect(Figure):
 
     def move_by(self, by_x, by_y):
         self.collision.move_ip(by_x, by_y)
-
-    def teleport(self, x, y):
-        self.collision.move(x, y)

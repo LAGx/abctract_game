@@ -4,10 +4,10 @@ import phisic.vector
 import config
 
 class Player():
-    pos_x = 0.0
-    pos_y = 0.0
-    __speed = 0.3
-    __drug = 0.05
+    pos_x = float(0)
+    pos_y = float(0)
+    __speed = float(1)
+    __drug = float(0.15)
     skin = figure.Rect(pos_x,pos_y,10,10)
 
     main_vec = phisic.vector.Vector()
@@ -21,20 +21,20 @@ class Player():
         self.right_vec.changeXEx(self.__speed)
 
     def control(self):
-        for event in pygame.event.get():
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_a]:
-                self.main_vec.changeXPlus(-self.right_vec.posX)
-            if keys[pygame.K_d]:
-                self.main_vec.changeXPlus(self.right_vec.posX)
-            if keys[pygame.K_w]:
-                self.main_vec.changeYPlus(self.up_vec.posY)
-            if keys[pygame.K_s]:
-                self.main_vec.changeYPlus(-self.up_vec.posY)
-            if keys[pygame.K_f]:
-                self.skin.teleport(0, 0)
-                self.main_vec.posX = 0
-                self.main_vec.posY = 0
+
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_a]:
+            self.main_vec.changeXPlus(-self.right_vec.posX)
+        if keys[pygame.K_d]:
+            self.main_vec.changeXPlus(self.right_vec.posX)
+        if keys[pygame.K_w]:
+            self.main_vec.changeYPlus(self.up_vec.posY)
+        if keys[pygame.K_s]:
+            self.main_vec.changeYPlus(-self.up_vec.posY)
+        if keys[pygame.K_f]:
+            self.skin.teleport(0, 0)
+            self.main_vec.posX = 0
+            self.main_vec.posY = 0
 
     def update(self, canvas):
         self.control()

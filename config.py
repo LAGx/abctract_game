@@ -2,7 +2,7 @@ import tkinter as tk
 r = tk.Tk()
 
 ####screen
-screen_mode = "full" #full normal test
+screen_mode = "full"  #full normal test
 SCREENSIZE = ((r.winfo_screenwidth(), r.winfo_screenheight()), (900,500),(400,400))
 dialogSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/6),(400,400/6))
 

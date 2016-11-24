@@ -1,6 +1,6 @@
 import numpy
 import pygame
-from coordinate import glob
+
 
 class Vector:
     posX = 0.0

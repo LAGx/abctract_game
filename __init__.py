@@ -1,13 +1,16 @@
 import pygame
-import graphicCore.window
-from coordinate.glob import *
+
 import game_objects.player.player
-import phisic.figure.figure as figure
 import graphicCore.dialog.dialog
+import graphicCore.window
+import phisic.figure.figure as figure
+from serving.cord import *
+
 pygame.init()
 
 
 #TODO: music class
+#TODO: more figure classes
 pygame.mixer.music.load("music.mp3")
 pygame.mixer.music.play(-1, 13.0)
 
@@ -30,7 +33,7 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 gameExit = False
 
-look = graphicCore.dialog.dialog.Dialog(dialog)
+look = graphicCore.dialog.dialog.Dialog(dialog, "hello.txt")
 
 while not gameExit:
 
@@ -54,15 +57,15 @@ while not gameExit:
     if player.skin.collision.colliderect(house.collision):
         if alpha < 120:
             alpha += 30
-        look.showLine("It`s your house, master.")
+        look.showFile(1, 4)
     elif player.skin.collision.colliderect(ruby.collision):
         if alpha < 120:
             alpha += 30
-        look.showLine("Ruby!!!!")
+        look.showFile(6, 11)
     elif player.skin.collision.colliderect(nubs.collision):
         if alpha < 120:
             alpha += 30
-        look.showLine("W A S D - movement")
+        look.showFile(13, 17)
     else:
         if(alpha >= 0):
             alpha -= 30

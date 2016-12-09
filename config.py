@@ -4,7 +4,7 @@ r = tk.Tk()
 ####screen
 screen_mode = "normal"   #full normal test
 SCREENSIZE = ((r.winfo_screenwidth(), r.winfo_screenheight()), (900,500),(400,400))
-dialogSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/4),(400,400/6))
+indicatorSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/4),(400,400/6))
 
 def currScreenSize():
     if screen_mode == "full":
@@ -16,21 +16,21 @@ def currScreenSize():
     else:
         print("Error screen_mode")
 
-def currDialogSize(axis):
+def currIndicatorSize(axis):
     if axis == "x":
         if screen_mode == "full":
-            return dialogSize[0][0]
+            return indicatorSize[0][0]
         elif screen_mode == "normal":
-            return dialogSize[1][0]
+            return indicatorSize[1][0]
         elif screen_mode == "test":
-            return dialogSize[2][0]
+            return indicatorSize[2][0]
     if axis == "y":
         if screen_mode == "full":
-            return dialogSize[0][1]
+            return indicatorSize[0][1]
         elif screen_mode == "normal":
-            return dialogSize[1][1]
+            return indicatorSize[1][1]
         elif screen_mode == "test":
-            return dialogSize[2][1]
+            return indicatorSize[2][1]
 
 
 ####colors

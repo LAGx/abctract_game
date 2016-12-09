@@ -14,8 +14,6 @@ class Dialog:
             self.line.append(line)
         file.close()
 
-    def __textDivide(self, all_text):
-        pass
 
     def showLine(self, text = "error: no text", pos = 0):
         textLine = self.font.render(text[:-1], 1, config.Color.text_dialog)

@@ -15,3 +15,4 @@ class Global: #filter coord
 
     def gloY(self, y):
         return -y + self.__native_cord[1] / 2
+

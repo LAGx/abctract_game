@@ -5,11 +5,11 @@ import pygame
 class Vector:
     posX = float(0)
     posY = float(0)
-    __lenth = float(0)
+
 
     def getLenth(self):
-        self.__lenth = numpy.sqrt((self.posX * self.posX) + (self.posY * self.posY))
-        return self.__lenth
+         return numpy.sqrt((self.posX * self.posX) + (self.posY * self.posY))
+
 
 
     #Ex - заменить

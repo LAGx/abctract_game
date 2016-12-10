@@ -6,7 +6,7 @@ class RegularBullet:
     pos = [0, 0]
     vector = phisic.vector.Vector()
     color = [167,34,46]
-    speed = 0.05
+    speed = 30
     isInit = False
 
     def __init__(self):
@@ -20,13 +20,12 @@ class RegularBullet:
         self.pos = start
         self.vector.changeXEx(end[0] - self.pos[0])
         self.vector.changeYEx(end[1] + self.pos[1])
-        print("x1: ", self.vector.posX, "y1: ", self.vector.posY)
-        #self.vector.changeXEx((self.vector.posX)/self.vector.getLenth())
-        #self.vector.changeYEx((-self.vector.posY) / self.vector.getLenth())
-        print(self.vector.getLenth(), "x: ", self.vector.posX, "y: ", self.vector.posY)
+        lenth = self.vector.getLenth()
+        self.vector.changeXEx((self.vector.posX)/lenth)
+        self.vector.changeYEx((-self.vector.posY)/lenth)
         self.isInit = True
 
     def fire(self, canvas):
-        pygame.draw.line(canvas,self.color, [self.pos[0], -self.pos[1]], [self.pos[0]+self.vector.posX*self.speed*5, -self.pos[1]-self.vector.posY*self.speed*5], 8)
+        pygame.draw.line(canvas,self.color, [self.pos[0], -self.pos[1]], [self.pos[0]+self.vector.posX*self.speed*3, -self.pos[1]-self.vector.posY*self.speed*3], 4)
         self.pos[0] += self.vector.posX * self.speed
         self.pos[1] += self.vector.posY * self.speed

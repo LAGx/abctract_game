@@ -1,8 +1,9 @@
 import tkinter as tk
+import write
 r = tk.Tk()
 
 ####screen
-screen_mode = "full" #full normal test
+screen_mode = "ful" #full normal test
 SCREENSIZE = ((r.winfo_screenwidth(), r.winfo_screenheight()), (900,500),(400,400))
 indicatorSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/4),(400,400/6))
 
@@ -14,7 +15,8 @@ def currScreenSize():
     elif screen_mode == "test":
         return SCREENSIZE[2]
     else:
-        print("Error screen_mode")
+        write.error("screen mode")
+        return SCREENSIZE[2]
 
 def currIndicatorSize(axis):
     if axis == "x":

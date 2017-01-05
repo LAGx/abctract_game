@@ -1,19 +1,20 @@
 import pygame
 
 import game_objects.player.player
-import serving.music.music
-import graphicCore.dialog.dialog
 import graphicCore.window
-import phisic.figure.figure as figure
+import write
 from serving.cord import *
 
 pygame.init()
 
-
+write.clear()
 window = graphicCore.window.createWindow()
 canvas = pygame.Surface(config.currScreenSize())
 indicators = pygame.Surface((config.currIndicatorSize("x"),config.currIndicatorSize("y")))
-
+write.log("oh, god...")
+write.log("Time???", timing=True)
+write.error("hmmm error?")
+write.error("and whith time", timing=True)
 
 alpha = 150
 player = game_objects.player.player.Player()

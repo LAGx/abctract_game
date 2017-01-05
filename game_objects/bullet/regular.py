@@ -1,31 +1,32 @@
 import phisic.vector
 import pygame
+import copy
 from serving.cord import *
 
 class RegularBullet:
-    pos = [0, 0]
-    vector = phisic.vector.Vector()
-    color = [167,34,46]
-    speed = 30
-    isInit = False
 
-    def __init__(self):
-        pass
+    color = [153,0,0]
+    speed = 40
 
-    def initBullet(self, start = [0,0], end = [0,0]):
+
+    def __init__(self, start = None, end = None):
+
         start[0] += 10
         start[1] -= 10
         end[0] +=10
         end[1] +=10
-        self.pos = start
-        self.vector.changeXEx(end[0] - self.pos[0])
-        self.vector.changeYEx(end[1] + self.pos[1])
-        lenth = self.vector.getLenth()
-        self.vector.changeXEx((self.vector.posX)/lenth)
-        self.vector.changeYEx((-self.vector.posY)/lenth)
+        self.__vector = phisic.vector.Vector()
+        self.__pos = start
+        self.__vector.changeXEx(end[0] - start[0])
+        self.__vector.changeYEx(end[1] + start[1])
+        lenth = self.__vector.getLenth()
+        self.__vector.changeXEx((self.__vector.posX)/lenth)
+        self.__vector.changeYEx((-self.__vector.posY)/lenth)
         self.isInit = True
 
-    def fire(self, canvas):
-        pygame.draw.line(canvas,self.color, [self.pos[0], -self.pos[1]], [self.pos[0]+self.vector.posX*self.speed*3, -self.pos[1]-self.vector.posY*self.speed*3], 4)
-        self.pos[0] += self.vector.posX * self.speed
-        self.pos[1] += self.vector.posY * self.speed
+    def blit(self, canvas):
+        pygame.draw.line(canvas, self.color, [self.__pos[0], -self.__pos[1]], [self.__pos[0]+self.__vector.posX*self.speed*3, -self.__pos[1]-self.__vector.posY*self.speed*3], 4)
+        self.__pos[0] += self.__vector.posX * self.speed
+        self.__pos[1] += self.__vector.posY * self.speed
+
+

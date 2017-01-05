@@ -8,8 +8,7 @@ import phisic.figure.figure as figure
 from serving.cord import *
 
 pygame.init()
-#TODO: music class
-#TODO: more figure classes
+
 
 window = graphicCore.window.createWindow()
 canvas = pygame.Surface(config.currScreenSize())

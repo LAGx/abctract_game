@@ -2,7 +2,7 @@ import pygame
 
 import game_objects.player.player
 import graphicCore.window
-import write
+from serving import write
 from serving.cord import *
 
 pygame.init()

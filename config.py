@@ -1,9 +1,9 @@
 import tkinter as tk
-import write
+from serving import write
 r = tk.Tk()
 
 ####screen
-screen_mode = "ful" #full normal test
+screen_mode = "full" #full normal test
 SCREENSIZE = ((r.winfo_screenwidth(), r.winfo_screenheight()), (900,500),(400,400))
 indicatorSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/4),(400,400/6))
 

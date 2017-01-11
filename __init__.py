@@ -11,10 +11,6 @@ write.clear()
 window = graphicCore.window.createWindow()
 canvas = pygame.Surface(config.currScreenSize())
 indicators = pygame.Surface((config.currIndicatorSize("x"),config.currIndicatorSize("y")))
-write.log("oh, god...")
-write.log("Time???", timing=True)
-write.error("hmmm error?")
-write.error("and whith time", timing=True)
 
 alpha = 150
 player = game_objects.player.player.Player()

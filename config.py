@@ -3,7 +3,7 @@ from serving import write
 r = tk.Tk()
 
 ####screen
-screen_mode = "full" #full normal test
+screen_mode = "normal" #full normal test
 SCREENSIZE = ((r.winfo_screenwidth(), r.winfo_screenheight()), (900,500),(400,400))
 indicatorSize = ((r.winfo_screenwidth(), r.winfo_screenheight()/6), (900,500/4),(400,400/6))
 

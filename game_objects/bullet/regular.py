@@ -1,7 +1,7 @@
 import phisic.vector
 import pygame
 import copy
-from serving.cord import *
+import serving.cord
 
 class RegularBullet:
 

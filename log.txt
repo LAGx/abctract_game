@@ -1,4 +1,0 @@
-LOG: oh, god...
-LOG[20:57:16]: Time???
-ERROR: hmmm error?
-ERROR[20:57:16]: and whith time

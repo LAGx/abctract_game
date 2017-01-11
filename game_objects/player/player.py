@@ -48,8 +48,6 @@ class Player():
     def fireRegular(self, canvas):
         if self.mousepress[0]:
             self.allBullets.append(copy.deepcopy(game_objects.bullet.regular.RegularBullet([self.pos[0], self.pos[1]], self.mouse)))
-
-
         for bullet in self.allBullets:
             bullet.blit(canvas)
 
@@ -68,4 +66,3 @@ class Player():
         self.pos[0] = self.skin.collision.x
         self.pos[1] = -self.skin.collision.y
         self.skin.draw(canvas)
-

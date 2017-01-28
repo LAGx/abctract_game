@@ -24,3 +24,11 @@ def error(massage, fileName = "log.txt", timing = False):
     else:
         file.write("ERROR: " + massage + "\n")
     file.close()
+
+def warning(massage, fileName = "log.txt", timing = False):
+    file = open(fileName, "a")
+    if timing:
+        file.write("WARNING" + time() + ": " + massage + "\n")
+    else:
+        file.write("WARNING: " + massage + "\n")
+    file.close()

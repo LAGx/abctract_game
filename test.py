@@ -4,6 +4,7 @@ import phisic.body
 import graphicCore.window
 from serving import write
 from serving.cord import *
+import phisic.collision
 
 pygame.init()
 
@@ -15,14 +16,10 @@ pygame.key.set_repeat(1,1)
 clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 gameExit = False
-speed = 0.05
-angle = 0
-body = phisic.body.RectBody([0, 0], 100, 50)
-circle = phisic.body.CircleBody([200, 150], 3)
-deltaPoint = phisic.body.Point([0, 0])
-rotateP = phisic.body.Point([200, 150])
-body.rotate(rotateP)
-angle = 0
+speed = 0.5
+player = phisic.body.CircleBody([200, 250], 50)
+body = phisic.body.RectBody([100, 200], 300, 200)
+
 while not gameExit:
 
     for event in pygame.event.get():
@@ -33,24 +30,22 @@ while not gameExit:
     if keys[pygame.K_ESCAPE]:
         gameExit = True
     if keys[pygame.K_a]:
-        deltaPoint.change([-speed,0], "add")
+        player.move([-speed, 0])
     if keys[pygame.K_d]:
-        deltaPoint.change([speed, 0], "add")
+        player.move([speed, 0])
     if keys[pygame.K_w]:
-        deltaPoint.change([0,-speed], "add")
+        player.move([0, -speed])
     if keys[pygame.K_s]:
-        deltaPoint.change([0,speed], "add")
-    if keys[pygame.K_e]:
-        circle.rotate(rotateP, 0.05)
-    if keys[pygame.K_q]:
-        circle.rotate(rotateP, -0.05)
+        player.move([0, speed])
 
     canvas.fill(config.Color.background)
+    player.draw(canvas, (200, 0, 0))
+    if not phisic.collision.circle_rect(player, body):
+        body.draw(canvas, (200, 0, 0))
+    else:
+        body.draw(canvas, (0, 200, 0))
 
-    circle.draw(canvas, (0, 255, 0))
-    circle.move(deltaPoint)
 
-    body.draw(canvas)
 
     window.blit(canvas, (0, 0))
     pygame.display.update()
@@ -59,4 +54,4 @@ while not gameExit:
 pygame.quit()
 quit()
 
-#by K`VARCK
+#by K`VARK

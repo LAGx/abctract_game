@@ -17,8 +17,9 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 gameExit = False
 speed = 0.5
-player = phisic.body.CircleBody([200, 250], 50)
-body = phisic.body.RectBody([100, 200], 300, 200)
+player = phisic.body.CircleBody([200, 250], 200)
+body = phisic.body.RectBody([100, 200], 80, 100)
+body.rotate(phisic.body.Point([100,200]), 0.5)
 
 while not gameExit:
 
@@ -40,6 +41,7 @@ while not gameExit:
 
     canvas.fill(config.Color.background)
     player.draw(canvas, (200, 0, 0))
+
     if not phisic.collision.circle_rect(player, body):
         body.draw(canvas, (200, 0, 0))
     else:

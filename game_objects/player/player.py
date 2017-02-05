@@ -26,7 +26,7 @@ class Player():
         self.skin.color = config.Color.player
         self.up_vec.changeYEx(self.__speed)
         self.right_vec.changeXEx(self.__speed)
-        self.aim = pygame.image.load("aim.png")
+        self.aim = pygame.image.load("resource/aim.png")
         self.aim.set_colorkey((0,0,0))
         pygame.mouse.set_pos((100,100))
         self.isInit = False

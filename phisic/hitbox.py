@@ -37,12 +37,12 @@ class Point:
             log.error("mode invalid in Point.change()", timing=False)
 
 
-class RectBody:
+class Rect:
     # (x,y)  [1] ********* [2]     (lenth)
     #            *********
     # (width)[3] ********* [4]
 
-    def __init__(self, listCords=[0, 0], lenth=0, width = 0):   #whidth = 0 - line   (x,y)*********(lenth)
+    def __init__(self, listCords=[0, 0], lenth = 0, width = 1):   #width = 1 - line   (x,y)*********(lenth)
         self.point = [0,0,0,0]
         for i in range(0, 4):
             self.point[i] = Point(listCords)
@@ -62,7 +62,7 @@ class RectBody:
         for i in range(0, 4):
             pygame.draw.circle(canvas, color, [int(self.point[i].p[0]), int(self.point[i].p[1])], 2)
 
-    def rotate(self, basePoint = Point([0, 0]), angle=0): #angle degeese
+    def rotate(self, basePoint = Point([0, 0]), angle=0):
         for i in range(0, 4):
             self.point[i].change([-basePoint.p[0], -basePoint.p[1]],"add")
             self.point[i].change([self.point[i].p[0]*math.cos(angle) - self.point[i].p[1]*math.sin(angle), self.point[i].p[0]*math.sin(angle) + self.point[i].p[1]*math.cos(angle)],"instead")
@@ -73,13 +73,12 @@ class RectBody:
         self.vec.changeYEx(self.point[1].point[1] - self.point[0].p[1])
         return self.vec
 
-class CircleBody:
+class Circle:
 
     def __init__(self, listCords, radius = 0): #0 - point body if you want collis point and point (circle r=0)
         import numpy
         self.point = Point(listCords)
         self.radius = radius
-        self.square = numpy.pi * radius * radius
 
     def draw(self, canvas, color = (100,100,200)):
         pygame.draw.circle(canvas, color, (int(self.point.p[0]), int(self.point.p[1])), self.radius)

@@ -1,6 +1,6 @@
 import pygame
 
-import phisic.body
+import phisic.hitbox
 import graphicCore.window
 from serving import write
 from serving.cord import *
@@ -17,9 +17,9 @@ clock = pygame.time.Clock()
 pygame.mouse.set_visible(False)
 gameExit = False
 speed = 0.5
-player = phisic.body.CircleBody([200, 250], 200)
-body = phisic.body.RectBody([100, 200], 80, 100)
-body.rotate(phisic.body.Point([100,200]), 0.5)
+player = phisic.hitbox.Circle([200, 250], 20)
+body = phisic.hitbox.Rect([100, 200], 80)
+body.rotate(phisic.hitbox.Point([100,200]), 0.5)
 
 while not gameExit:
 

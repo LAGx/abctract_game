@@ -1,4 +1,4 @@
-import phisic.body
+import phisic.hitbox
 import serving.write as log
 import numpy
 
@@ -57,6 +57,8 @@ def circle_rect(circle, rect):
     for i in range(0,4 ):
         if point_circle(rect.point[i], circle, False):
             return True
+
+    return False
 
 def circle_circle(circle_1, circle_2):
     return True if serviсeFunc.lengthPoint_point(circle_1.point, circle_2.point) <= circle_1.radius + circle_2.radius else False

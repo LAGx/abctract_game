@@ -88,7 +88,8 @@ class Circle:
     def draw(self, canvas, color = (100,100,200)):
         pygame.draw.circle(canvas, color, (int(self.point.p[0]), int(self.point.p[1])), self.radius)
 
-    def rotate(self, basePoint = Point([0, 0]), angle=0): #angle degeese
+    def rotate(self, basePoint = Point([0, 0]), ang_degree=0): #angle degeese
+            angle = (ang_degree*math.pi)/180
             self.point.change([-basePoint.p[0], -basePoint.p[1]],"add")
             self.point.change([self.point.p[0]*math.cos(angle) - self.point.p[1]*math.sin(angle), self.point.p[0]*math.sin(angle) + self.point.p[1]*math.cos(angle)],"instead")
             self.point.change(basePoint, "add")

@@ -19,8 +19,8 @@ gameExit = False
 speed = 0.5
 
 
-body = game_objects.body.Rect([150, 150], [0,-3],6,50, "resource/lazer_sqr.png")
-player = game_objects.body.Rect([200, 200], [-10,-10], 20, 20, "resource/aim.png")
+body = game_objects.body.Circle([150, 150], [0,-3],12, "resource/lazer_sqr.png")
+player = game_objects.body.Rect([200, 200], [-10,-10], 20,20,  "resource/aim.png")
 
 player.speedCoef = 2
 player.drugCoef = 0.1
@@ -48,7 +48,7 @@ while not gameExit:
 
     canvas.fill(config.Color.background)
 
-    if phisic.collision.rect_rect(body.hitbox, player.hitbox):
+    if phisic.collision.circle_rect(body.hitbox, player.hitbox):
         pygame.draw.circle(canvas, (200,60,60), [300, 200], 30)
     else:
         pygame.draw.circle(canvas, (20,55,20), [300, 200], 25)

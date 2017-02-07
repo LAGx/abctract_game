@@ -53,6 +53,8 @@ class Rect:
         self.point[3].change([width, lenth], "add")
         self.vec = phisic.vector.Vector(self.point[1].p[0] - self.point[0].p[0], self.point[1].p[1] - self.point[0].p[1])
         self.square = lenth * width
+        self.previosAngle = 0
+        
 
     def move(self, xy):
         for i in range(0, 4):
@@ -62,16 +64,19 @@ class Rect:
         for i in range(0, 4):
             pygame.draw.circle(canvas, color, [int(self.point[i].p[0]), int(self.point[i].p[1])], 2)
 
-    def rotate(self, basePoint = Point([0, 0]), angle=0):
+    def rotate(self, basePoint = Point([0, 0]), ang_degree=0):
+        angle = (ang_degree*math.pi)/180
         for i in range(0, 4):
             self.point[i].change([-basePoint.p[0], -basePoint.p[1]],"add")
             self.point[i].change([self.point[i].p[0]*math.cos(angle) - self.point[i].p[1]*math.sin(angle), self.point[i].p[0]*math.sin(angle) + self.point[i].p[1]*math.cos(angle)],"instead")
             self.point[i].change(basePoint, "add")
 
+
     def getAndUpdateVector(self): # - line [0]*********[1]
         self.vec.changeXEx(self.point[1].p[0] - self.point[0].p[0])
         self.vec.changeYEx(self.point[1].point[1] - self.point[0].p[1])
         return self.vec
+
 
 class Circle:
 

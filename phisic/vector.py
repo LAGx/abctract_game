@@ -11,6 +11,9 @@ class Vector:
     def getLenth(self):
          return numpy.sqrt((self.posX * self.posX) + (self.posY * self.posY))
 
+    def getCordList(self):
+        return [self.posX, self.posY]
+
     #Ex - заменить
     #Plus - добавить
     def changeXEx(self,X):

@@ -1,6 +1,6 @@
 import phisic.figure.figure as figure
 import pygame
-import phisic.vector
+import phisic.hitbox
 import copy
 import gc
 import game_objects.bullet.regular
@@ -13,7 +13,7 @@ class Player():
     mousepress = [0,0,0]
     __speed = float(8)
     __drug = float(0.25)
-    skin = figure.Rect(pos[0],pos[1],15,15)
+    skin = phisic.hitbox.Rect([pos[0],pos[1]],15,15)
     allBullets = []
 
     main_vec = phisic.vector.Vector()
@@ -62,7 +62,7 @@ class Player():
         self.drug_vec.multiply(self.__drug)
         self.drug_vec.invert()
         self.main_vec.plus(self.drug_vec)
-        self.skin.move_by(self.main_vec.posX, self.main_vec.posY)
+        #self.skin.move_by(self.main_vec.posX, self.main_vec.posY)
         self.pos[0] = self.skin.collision.x
         self.pos[1] = -self.skin.collision.y
-        self.skin.draw(canvas)
+        #self.skin.draw(canvas)

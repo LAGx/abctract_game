@@ -1,1 +1,1 @@
-mouse_pos = pygame.mouse.get_pos() #tuple of coord
+вращение изображения происходит относительно центра

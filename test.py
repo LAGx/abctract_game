@@ -1,10 +1,13 @@
 import pygame
 import game_objects.body
+import game_objects.player
 import phisic.hitbox
 import graphicCore.window
 from serving import write
 from serving.cord import *
 import phisic.collision
+import serving.write as log
+
 
 pygame.init()
 
@@ -20,44 +23,47 @@ speed = 0.5
 
 
 body = game_objects.body.Circle([150, 150], [0,-3],12, "resource/lazer_sqr.png")
-player = game_objects.body.Rect([200, 200], [-10,-10], 20,20,  "resource/aim.png")
+player = game_objects.player.Player("resource/player.png", "resource/aim.png")
 
-player.speedCoef = 2
-player.drugCoef = 0.1
-player.delta_rotate = -2
+field = phisic.hitbox.Rect([0,0],config.currScreenSize()[1],config.currScreenSize()[0]) 
+
+player.body.speed = 1
+player.body.drug = 0.1
 body.delta_rotate = 1
 
 while not gameExit:
-
+    key = pygame.key.get_pressed()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             gameExit = True
+        player.getEvent(event)
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_ESCAPE]:
+    if key[pygame.K_ESCAPE]:
         gameExit = True
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_a]:
-        player.vec.changeXPlus(-1)
-    if keys[pygame.K_d]:
-        player.vec.changeXPlus(1)
-    if keys[pygame.K_w]:
-        player.vec.changeYPlus(-1)
-    if keys[pygame.K_s]:
-        player.vec.changeYPlus(1)
+
+    player.getKeys(key, pygame.mouse.get_pos(),pygame.mouse.get_pressed())
+
 
     canvas.fill(config.Color.background)
 
-    if phisic.collision.circle_rect(body.hitbox, player.hitbox):
-        pygame.draw.circle(canvas, (200,60,60), [300, 200], 30)
-    else:
-        pygame.draw.circle(canvas, (20,55,20), [300, 200], 25)
+
 
     body.draw(canvas)
-    body.visualDebag(canvas, (20, 200, 200))
+    #body.visualDebag(canvas, (20, 200, 200))
 
     player.draw(canvas)
-    player.visualDebag(canvas, (200,0,0))
+    #player.body.visualDebag(canvas, (200,0,0))
+
+
+    i = 0
+    while i < len(player.allBullets):
+        if phisic.collision.circle_rect(body.hitbox, player.allBullets[i].body.hitbox):
+            pygame.draw.circle(canvas, (200,60,60), [300, 200], 30)
+        
+
+        if not phisic.collision.rect_rect(player.allBullets[i].body.hitbox, field):
+            player.allBullets.pop(i)
+        i +=1
 
     window.blit(canvas, (0, 0))
     pygame.display.update()

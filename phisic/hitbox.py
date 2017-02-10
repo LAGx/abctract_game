@@ -53,12 +53,12 @@ class Rect:
         self.point[3].change([width, lenth], "add")
         self.vec = phisic.vector.Vector(self.point[1].p[0] - self.point[0].p[0], self.point[1].p[1] - self.point[0].p[1])
         self.square = lenth * width
-        self.previosAngle = 0
+        
         
 
-    def move(self, xy):
+    def move(self, xy, mode):
         for i in range(0, 4):
-            self.point[i].change(xy, "add")
+            self.point[i].change(xy, mode)
 
     def draw(self, canvas, color = (200,0,0)):
         for i in range(0, 4):
@@ -74,7 +74,7 @@ class Rect:
 
     def getAndUpdateVector(self): # - line [0]*********[1]
         self.vec.changeXEx(self.point[1].p[0] - self.point[0].p[0])
-        self.vec.changeYEx(self.point[1].point[1] - self.point[0].p[1])
+        self.vec.changeYEx(self.point[1].p[1] - self.point[0].p[1])
         return self.vec
 
 

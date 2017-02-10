@@ -67,10 +67,10 @@ def circle_circle(circle_1, circle_2):
 class serviсeFunc:
 
     def lengthPoint_point(p_1, p_2):
-       return numpy.sqrt(pow((p_1.p[0] - p_2.p[0]), 2) + pow((p_1.p[1] - p_2.p[1]), 2))
+        return numpy.sqrt(pow((p_1.p[0] - p_2.p[0]), 2) + pow((p_1.p[1] - p_2.p[1]), 2))
 
     def square(a, b, c):
-      return abs(0.5*((b.p[0]-a.p[0])*(c.p[1]-a.p[1])-(b.p[1]-a.p[1])*(c.p[0]-a.p[0])))
+        return abs(0.5*((b.p[0]-a.p[0])*(c.p[1]-a.p[1])-(b.p[1]-a.p[1])*(c.p[0]-a.p[0])))
 
     def lengthPoint_line(xr, yr, x1,y1,x2,y2):     #length from point(xr,yr) to line((x1,y1),(x2,y2))
-      return abs(xr*(y2-y1)+yr*(x1-x2) -x1*y2 + y1*x2)/numpy.sqrt(pow(y2-y1,2)+pow(x1-x2,2))
+        return abs(xr*(y2-y1)+yr*(x1-x2) -x1*y2 + y1*x2)/numpy.sqrt(pow(y2-y1,2)+pow(x1-x2,2))

@@ -3,7 +3,7 @@ import phisic.vector
 import pygame
 import serving.miniFunc as mFunc
 import copy
-
+import math
 
 class Rect:
 	#initCenter is main point(absolute cord), all body rotate around this
@@ -23,17 +23,18 @@ class Rect:
 		self.vec = phisic.vector.Vector()
 		self.drug_vec = phisic.vector.Vector()
 
+		#scalar 
 		self.rotate_degree = 0 
 		self.delta_rotate = 0	# -clockwise +counter-clockwise
 
-		self.speedCoef = 1
-		self.drugCoef = 1
+		self.speed = 1
+		self.drug = 1
 
 
-	def vectorMachine(self):  
+	def vectorMachine(self):
 		self.drug_vec.changeXEx(self.vec.posX)
 		self.drug_vec.changeYEx(self.vec.posY)
-		self.drug_vec.multiply(self.drugCoef)
+		self.drug_vec.multiply(self.drug)
 		self.drug_vec.invert()
 		self.vec.plus(self.drug_vec)
 
@@ -55,25 +56,42 @@ class Rect:
 		self.rect = self.imageForRotate.get_rect(center=self.rect.center)
 		self.hitbox.rotate(self.hitboxStart.center, self.rotate_degree)
 
+	def rotateToPointFirst(self, point):
+		vec_player_aim = phisic.vector.Vector(point1 = self.hitboxStart.center, point2 = point)
+		if point.p[0] > self.hitboxStart.center.p[0]:
+			self.toTurn(math.degrees(math.acos(phisic.vector.getScalar(self.hitboxStart.getAndUpdateVector(),vec_player_aim))))
+		else:
+			self.toTurn(math.degrees(-math.acos(phisic.vector.getScalar(self.hitboxStart.getAndUpdateVector(),vec_player_aim))))
+
+	def rotateToPointSec(self, point):
+		vec_player_aim = phisic.vector.Vector(point1 = self.hitboxStart.center, point2 = point)
+		if point.p[0] > self.hitboxStart.center.p[0]:
+			self.toTurn(math.degrees(math.acos(-phisic.vector.getScalar(self.hitboxStart.getAndUpdateVector(),vec_player_aim))))
+		else:
+			self.toTurn(math.degrees(-math.acos(-phisic.vector.getScalar(self.hitboxStart.getAndUpdateVector(),vec_player_aim))))
 
 	def move(self, xy):
-		self.hitboxStart.move(xy)
+		self.hitboxStart.move(xy, "add")
 		self.hitboxStart.center.change(xy, "add")
 
+	def teleport(self, xy):
+		self.hitboxStart.move(xy, "instead")
+		self.hitboxStart.center.change(xy, "instead")
 
 	def draw(self, canvas):
 
 		self.rotating()
 		self.vectorMachine()
-		self.move(self.vec.getCordList())
+		self.move(self.vec.multiplyAndGetCordList(self.speed))
 
-		canvas.blit(self.imageForRotate, (self.hitboxStart.center.p[0] - (self.image.get_width()/2)+self.rect.x, self.hitboxStart.center.p[1] - (self.image.get_height()/2)+self.rect.y)) #add in cords self.rect.(x, y)
+		canvas.blit(self.imageForRotate, (self.hitboxStart.center.p[0] - (self.image.get_width()/2)+self.rect.x-self.vec.posX, self.hitboxStart.center.p[1] - (self.image.get_height()/2)+self.rect.y-self.vec.posY)) #add in cords self.rect.(x, y)
 
 
 	def visualDebag(self, canvas, color = (200,20,2)):
 		pygame.draw.circle(canvas, color, [int(self.hitboxStart.center.p[0]),int(self.hitboxStart.center.p[1])], 4) #hitboxCenter
 		self.hitbox.draw(canvas, color)#hitbox
 		pygame.draw.circle(canvas, color, [int(self.hitboxStart.center.p[0] - (self.image.get_width()/2)+self.rect.x),int(self.hitboxStart.center.p[1] - (self.image.get_height()/2)+self.rect.y)], 1)#start of drawing picture
+
 
 
 
@@ -99,14 +117,14 @@ class Circle:
 		self.rotate_degree = 0 
 		self.delta_rotate = 0	# -clockwise +counter-clockwise
 
-		self.speedCoef = 1
-		self.drugCoef = 1
+		self.speed = 1
+		self.drug = 1
 
 
 	def vectorMachine(self):  
 		self.drug_vec.changeXEx(self.vec.posX)
 		self.drug_vec.changeYEx(self.vec.posY)
-		self.drug_vec.multiply(self.drugCoef)
+		self.drug_vec.multiply(self.drug)
 		self.drug_vec.invert()
 		self.vec.plus(self.drug_vec)
 
@@ -138,7 +156,7 @@ class Circle:
 
 		self.rotating()
 		self.vectorMachine()
-		self.move(self.vec.getCordList())
+		self.move(self.vec.multiplyAndGetCordList(self.speed))
 
 		canvas.blit(self.imageForRotate, (self.hitboxStart.center.p[0] - (self.image.get_width()/2)+self.rect.x, self.hitboxStart.center.p[1] - (self.image.get_height()/2)+self.rect.y)) #add in cords self.rect.(x, y)
 

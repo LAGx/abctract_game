@@ -17,3 +17,5 @@ class Track:
 
     def reset(self):
         pygame.mixer.music.rewind()
+
+        

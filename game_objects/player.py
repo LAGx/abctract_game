@@ -1,15 +1,9 @@
 import pygame
 import phisic.hitbox
 import phisic.collision
-import copy
-import gc
 import game_objects.bullet
 import game_objects.body
-import math
-from serving.cord import *
-import phisic.vector
-import serving.write as log
-import graphicCore.window
+import config
 
 class Player:
 
@@ -18,6 +12,7 @@ class Player:
         self.body = game_objects.body.Rect([250,250], [-10, -10],20,20,image)
         #mouse block
         self.aim = game_objects.body.Rect([250,100], [-10, -10],20,20,aim)
+        self.field = phisic.hitbox.Rect([0,0],config.currScreenSize()[1],config.currScreenSize()[0]) 
         self.mouse = [0,0]
         pygame.mouse.set_pos(([250,100]))
         self.mousepress = [0,0,0]
@@ -25,7 +20,7 @@ class Player:
         self.aim.delta_rotate = 4
         self.body.speed = 1
         self.body.drug = 0.5
-        self.fireDelay = 100
+        self.fireDelay = 150
         self.lastTime = pygame.time.get_ticks()
 
 
@@ -69,6 +64,11 @@ class Player:
                     self.allBullets.append(lazer)
                     self.lastTime = pygame.time.get_ticks()
        
+        i = 0
+        while i < len(self.allBullets):
+            if not phisic.collision.rect_rect(self.allBullets[i].body.hitbox, self.field):
+                self.allBullets.pop(i)
+            i +=1
 
         for bullet in self.allBullets:
             bullet.draw(canvas)

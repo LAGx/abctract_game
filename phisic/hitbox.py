@@ -3,7 +3,6 @@ import serving.write as log
 import pygame
 import phisic.vector
 
-
 class Point:
     def __init__(self, xy):
         self.p = [0,0]

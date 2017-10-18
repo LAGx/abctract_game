@@ -34,7 +34,6 @@ def currIndicatorSize(axis):
         elif screen_mode == "test":
             return indicatorSize[2][1]
 
-
 ####colors
 class Color:
     background = (5,20, 20)

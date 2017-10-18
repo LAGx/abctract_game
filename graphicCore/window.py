@@ -2,7 +2,6 @@ import config
 import pygame
 
 
-
 def createWindow():
     if config.screen_mode == "full":
         window = pygame.display.set_mode(config.currScreenSize(), pygame.FULLSCREEN, 32)

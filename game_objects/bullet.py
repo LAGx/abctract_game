@@ -1,8 +1,6 @@
 import phisic.vector
 import game_objects.body
-import serving.miniFunc as mFunc
 import phisic.hitbox
-import serving.write as log
 
 #initCord, vector, speed
 class Lazer:
